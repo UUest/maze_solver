@@ -1,23 +1,31 @@
-from visuals import Window, Point, Line, Cell 
+from visuals import Window
+from cell import Cell
 
 def main():
     win = Window(800, 600)
-    point1 = Point(100,100)
-    point2 = Point(200,200)
-    point3 = Point(300,300)
-    point4 = Point(400,400)
-    point5 = Point(500,500)
-    point6 = Point(600,600)
-    point7 = Point(700,700)
-    point8 = Point(800,800)
-    cell1 = Cell(win, point1, point2)
-    cell2 = Cell(win, point2, point3)
-    cell3 = Cell(win, point3, point4)
-    cell3.has_top_wall = False
-    cell3.has_bottom_wall = False
-    cell1.draw()
-    cell2.draw()
-    cell3.draw()
+    c1 = Cell(win)
+    c1.has_right_wall = False
+    c1.draw(50, 50, 100, 100)
+
+    c2 = Cell(win)
+    c2.has_left_wall = False
+    c2.has_bottom_wall = False
+    c2.draw(100, 50, 150, 100)
+
+    c1.draw_move(c2)
+
+    c3 = Cell(win)
+    c3.has_top_wall = False
+    c3.has_right_wall = False
+    c3.draw(100, 100, 150, 150)
+
+    c2.draw_move(c3)
+
+    c4 = Cell(win)
+    c4.has_left_wall = False
+    c4.draw(150, 100, 200, 150)
+
+    c3.draw_move(c4, True)
     win.wait_for_close()
 
 if __name__ == "__main__":
